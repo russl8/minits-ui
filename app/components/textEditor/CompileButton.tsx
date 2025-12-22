@@ -1,11 +1,11 @@
+import { useEffect } from "react";
 import { useCompilationResultContext } from "../context/CompilationResultContext";
+import { useCodeContext } from "../context/CodeContext";
 
-interface CompileButtonProps {
-  code: string;
-}
-
-const CompileButton = ({ code }: CompileButtonProps) => {
-  const {compilationResult, setCompilationResult} = useCompilationResultContext();
+const CompileButton = () => {
+  const { compilationResult, setCompilationResult } =
+    useCompilationResultContext();
+  const { code } = useCodeContext();
 
   async function compile() {
     const res = await fetch(
@@ -20,14 +20,18 @@ const CompileButton = ({ code }: CompileButtonProps) => {
     console.log(res);
     const data = await res.json();
     console.log("compile result:", data);
-    setCompilationResult(data)
-
-    console.log(compilationResult)
+    setCompilationResult(data);
   }
 
   return (
     <>
-      <button onClick={compile}>Compile</button>
+      <button
+        onClick={compile}
+        className="bg-backgroundDark py-2 px-4 text-lg text-white rounded-lg 
+        font-bold justify-self-end cursor-pointer hover:opacity-55 transition-opacity duration-200"
+      >
+        Compile
+      </button>
     </>
   );
 };
