@@ -4,6 +4,7 @@ import { useLoadingContext } from "../context/loadingContext";
 import ResultViewFailure from "./OutputViewFailure";
 import ResultViewSuccess from "./OutputViewSuccess";
 import OutputView from "./OutputView";
+import ExamplesView from "./ExamplesView";
 
 type Tab = "Output" | "Examples";
 
@@ -11,13 +12,16 @@ const ResultView = () => {
   const [tab, setTab] = useState<Tab>("Output");
 
   return (
-    <div className=" bg-backgroundDark py-2 px-4 mt-5 mb-2 mr-2 rounded-lg w-full border-neutral-700 border-1">
+    <div className="bg-backgroundDark py-2 px-4 mt-5 mb-2 mr-2 rounded-lg w-full border-neutral-700 border-1 overflow-hidden">
       <div className="flex flex-row  w-full h-7 mb-5">
         <ResultTabButton setTab={setTab} currentTab={tab} tabName="Output" />
         <ResultTabButton setTab={setTab} currentTab={tab} tabName="Examples" />
       </div>
 
-      {tab === "Output" && <OutputView/>}
+      <div className="overflow-y-scroll max-h-full text-foreground">
+        {tab === "Output" && <OutputView />}
+        {tab === "Examples" && <ExamplesView />}
+      </div>
     </div>
   );
 };

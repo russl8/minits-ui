@@ -4,17 +4,20 @@ import OutputViewFailure from "./OutputViewFailure";
 import OutputViewSuccess from "./OutputViewSuccess";
 
 const OutputView = () => {
-      const { compilationResult } = useCompilationResultContext();
-      const { isLoading } = useLoadingContext();
+  const { compilationResult } = useCompilationResultContext();
+  const { isLoading } = useLoadingContext();
   return (
     <>
       {compilationResult == null && !isLoading && (
-        <div className="h-full flex items-center justify-center text-neutral-500 text-base font-sans">
-          Click{" "}
-          <span className="mx-1 px-2 py-0.5 rounded bg-backgroundDark font-semibold text-neutral-300">
-            Compile
-          </span>{" "}
-          to see output
+        <div className="h-full flex flex-col items-center justify-center text-neutral-500 text-base font-sans">
+          <div>
+            Click{" "}
+            <span className="rounded bg-backgroundDark font-semibold text-neutral-300">
+              Compile
+            </span>{" "}
+            to see output.
+          </div>
+          <div>Refer to the Examples tab to get started!</div>
         </div>
       )}
 
