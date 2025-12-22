@@ -36,9 +36,6 @@ const TextEditor = () => {
         />
       </div>
 
-      {/* <div className="p-4 m-1 rounded-lg flex flex-row justify-end bg-backgroundDark">
-        <CompileButton code={code} />
-      </div> */}
     </div>
   );
 };

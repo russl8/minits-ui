@@ -6,14 +6,16 @@ import TextEditor from "./components/textEditor/TextEditor";
 import ResultView from "./components/resultView/ResultView";
 import { CompilationResultProvider } from "./components/context/compilationResultProvider";
 import CompileButton from "./components/textEditor/CompileButton";
-import { CodeContextProvider } from "./components/context/codeContextProvider";
+import { CodeContextProvider } from "./components/context/CodeContextProvider";
 import { useCodeContext } from "./components/context/CodeContext";
+import { LoadingContextProvider } from "./components/context/LoadingContextProvider";
 
 export default function Home() {
   return (
     <div>
       <CompilationResultProvider>
         <CodeContextProvider>
+          <LoadingContextProvider>
           <div className="flex flex-row w-screen">
             {/* LEFT SIDE */}
             <div className="flex flex-col h-screen lg:min-w-[70%]">
@@ -39,6 +41,7 @@ export default function Home() {
             {/* RIGHT SIDE */}
             <ResultView />
           </div>
+          </LoadingContextProvider>
         </CodeContextProvider>
       </CompilationResultProvider>
     </div>
