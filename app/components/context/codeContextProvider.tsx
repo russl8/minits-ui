@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { CompilationResult } from '../lib/types';
-import { CodeContext } from './CodeContext';
+import { CodeContext } from './codeContext';
 import { examples } from '../lib/examples';
 
 export const CodeContextProvider= ({ children } : {children: React.ReactNode}) => {

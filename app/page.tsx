@@ -4,10 +4,10 @@ import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import TextEditor from "./components/textEditor/TextEditor";
 import ResultView from "./components/resultView/ResultView";
-import { CompilationResultProvider } from "./components/context/compilationResultProvider";
+import { CompilationResultProvider } from "./components/context/CompilationResultProvider";
 import CompileButton from "./components/textEditor/CompileButton";
 import { CodeContextProvider } from "./components/context/CodeContextProvider";
-import { useCodeContext } from "./components/context/CodeContext";
+import { useCodeContext } from "./components/context/codeContext";
 import { LoadingContextProvider } from "./components/context/LoadingContextProvider";
 
 export default function Home() {

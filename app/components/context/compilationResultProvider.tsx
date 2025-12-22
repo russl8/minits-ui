@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CompilationResultContext } from "./CompilationResultContext";
+import { CompilationResultContext } from "./compilationResultContext";
 import { CompilationResult } from "../lib/types";
 
 export const CompilationResultProvider = ({

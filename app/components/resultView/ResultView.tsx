@@ -1,5 +1,5 @@
-import { useCompilationResultContext } from "../context/CompilationResultContext";
-import { useLoadingContext } from "../context/LoadingContext";
+import { useCompilationResultContext } from "../context/compilationResultContext";
+import { useLoadingContext } from "../context/loadingContext";
 import ResultViewFailure from "./ResultViewFailure";
 import ResultViewSuccess from "./ResultViewSuccess";
 

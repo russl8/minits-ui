@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CompilationResult } from "../lib/types";
-import { LoadingContext } from "./LoadingContext";
+import { LoadingContext } from "./loadingContext";
 import { examples } from "../lib/examples";
 
 export const LoadingContextProvider = ({

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useCompilationResultContext } from "../context/CompilationResultContext";
-import { useCodeContext } from "../context/CodeContext";
-import { useLoadingContext } from "../context/LoadingContext";
+import { useCompilationResultContext } from "../context/compilationResultContext";
+import { useCodeContext } from "../context/codeContext";
+import { useLoadingContext } from "../context/loadingContext";
 
 const CompileButton = () => {
   const { compilationResult, setCompilationResult } =

@@ -1,7 +1,7 @@
 import { Editor } from "@monaco-editor/react";
 import { useState } from "react";
 import CompileButton from "./CompileButton";
-import { useCodeContext } from "../context/CodeContext";
+import { useCodeContext } from "../context/codeContext";
 
 const TextEditor = () => {
   const { code, setCode } = useCodeContext();
