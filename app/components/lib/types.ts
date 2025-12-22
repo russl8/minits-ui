@@ -25,4 +25,4 @@ export type CompilationResult = {
   success: boolean;
   semanticErrors : Array<string>;
   classes: Array<ClassResult>;
-};
+} | null; 

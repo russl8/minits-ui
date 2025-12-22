@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { CompilationResultContext } from './compilationResultContext';
+import { CompilationResultContext } from './CompilationResultContext';
 import { CompilationResult } from '../lib/types';
 
 export const CompilationResultProvider= ({ children } : {children: React.ReactNode}) => {
