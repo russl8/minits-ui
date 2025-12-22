@@ -5,7 +5,7 @@ import { CodeContext } from './codeContext';
 import { examples } from '../lib/examples';
 
 export const CodeContextProvider= ({ children } : {children: React.ReactNode}) => {
-  const [code, setCode] = useState<string>(examples.initialExample);
+  const [code, setCode] = useState<string>(examples[0].snippet);
 
   return (
     <CodeContext.Provider value={{code, setCode}}>

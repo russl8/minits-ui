@@ -1,39 +1,55 @@
+import { useState } from "react";
 import { useCompilationResultContext } from "../context/compilationResultContext";
 import { useLoadingContext } from "../context/loadingContext";
-import ResultViewFailure from "./ResultViewFailure";
-import ResultViewSuccess from "./ResultViewSuccess";
+import ResultViewFailure from "./OutputViewFailure";
+import ResultViewSuccess from "./OutputViewSuccess";
+import OutputView from "./OutputView";
+import ExamplesView from "./ExamplesView";
+
+type Tab = "Output" | "Examples";
 
 const ResultView = () => {
-  const { compilationResult } = useCompilationResultContext();
-  const { isLoading } = useLoadingContext();
+  const [tab, setTab] = useState<Tab>("Output");
 
   return (
-    <div className=" bg-backgroundDark py-2 px-4 mt-5 mb-2 mr-2 rounded-lg w-full border-neutral-700 border-1">
-      {compilationResult == null && !isLoading && (
-        <div className="h-full flex items-center justify-center text-neutral-500 text-base font-sans">
-          Click{" "}
-          <span className="mx-1 px-2 py-0.5 rounded bg-backgroundDark font-semibold text-neutral-300">
-            Compile
-          </span>{" "}
-          to see output
-        </div>
-      )}
+    <div className="bg-backgroundDark py-2 px-4 mt-5 mb-2 mr-2 rounded-lg w-full border-neutral-700 border-1 overflow-hidden">
+      <div className="flex flex-row  w-full h-7 mb-5">
+        <ResultTabButton setTab={setTab} currentTab={tab} tabName="Output" />
+        <ResultTabButton setTab={setTab} currentTab={tab} tabName="Examples" />
+      </div>
 
-      {isLoading && (
-        <div className="h-full flex items-center justify-center text-neutral-500 text-base font-sans">
-          Loading...
-        </div>
-      )}
-
-      {!isLoading &&  compilationResult && compilationResult.success && (
-        <ResultViewSuccess result={compilationResult} />
-      )}
-
-      {compilationResult && !compilationResult.success && (
-        <ResultViewFailure result={compilationResult} />
-      )}
+      <div className="overflow-y-scroll max-h-full text-foreground">
+        {tab === "Output" && <OutputView />}
+        {tab === "Examples" && <ExamplesView />}
+      </div>
     </div>
   );
 };
 
 export default ResultView;
+
+const ResultTabButton = ({
+  currentTab,
+  tabName,
+  setTab,
+}: {
+  currentTab: Tab;
+  tabName: Tab;
+  setTab: (tab: Tab) => void;
+}) => {
+  return (
+    <button
+      className={`text-foreground font-bold text-2xl cursor-pointer mr-8 transition-opacity duration-200 
+        ${
+          currentTab === tabName
+            ? " underline "
+            : " opacity-40 hover:opacity-100"
+        }`}
+      onClick={() => {
+        setTab(tabName);
+      }}
+    >
+      <p>{tabName}</p>
+    </button>
+  );
+};

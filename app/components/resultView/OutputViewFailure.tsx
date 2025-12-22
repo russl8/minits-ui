@@ -2,11 +2,11 @@ import React, { useMemo } from "react";
 import { CompilationResult } from "../lib/types";
 import { parseCompilerError } from "./utils";
 
-interface ResultViewFailureProps {
+interface OutputViewFailureProps {
   result: CompilationResult;
 }
 
-export default function ResultViewFailure({ result }: ResultViewFailureProps) {
+export default function OutputViewFailure({ result }: OutputViewFailureProps) {
   if (!result || result.success) return null;
 
   const errors: string[] = (result as any).errors ?? [];

@@ -16,7 +16,7 @@ export default function Home() {
       <CompilationResultProvider>
         <CodeContextProvider>
           <LoadingContextProvider>
-          <div className="flex flex-row w-screen">
+          <div className="flex flex-row w-screen max-h-screen">
             {/* LEFT SIDE */}
             <div className="flex flex-col h-screen lg:min-w-[70%]">
               {/* HEADER */}
