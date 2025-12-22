@@ -23,6 +23,6 @@ export type ClassResult={
 
 export type CompilationResult = {
   success: boolean;
-  semanticErrors : Array<string>;
+  errors : Array<string>;
   classes: Array<ClassResult>;
 } | null; 

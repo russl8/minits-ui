@@ -1,14 +1,19 @@
 import { useCompilationResultContext } from "../context/CompilationResultContext";
+import ResultViewFailure from "./ResultViewFailure";
+import ResultViewSuccess from "./ResultViewSuccess";
 
 const ResultView = () => {
-  const context = useCompilationResultContext();
-  const compilationResult = context.compilationResult;
+  const { compilationResult } = useCompilationResultContext();
 
   return (
     <div>
-      <p>{compilationResult?.success}</p>
-      <p>{compilationResult?.semanticErrors}</p>
-      <p>{compilationResult?.classes.toLocaleString()}</p>
+      {compilationResult && compilationResult.success && (
+        <ResultViewSuccess result={compilationResult} />
+      )}
+
+      {compilationResult && !compilationResult.success && (
+        <ResultViewFailure result={compilationResult} />
+      )}
     </div>
   );
 };
