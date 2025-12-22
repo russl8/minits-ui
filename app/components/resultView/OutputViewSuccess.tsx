@@ -16,10 +16,10 @@ import { CompilationResult } from "../lib/types";
  *   ]
  * }
  */
-interface ResultViewSuccessProps {
+interface OutputViewSuccessProps {
     result: CompilationResult;
 }
-export default function ResultViewSuccess({ result }: ResultViewSuccessProps) {
+export default function OutputViewSuccess({ result }: OutputViewSuccessProps) {
   if (!result?.success) return null;
 
   return (
