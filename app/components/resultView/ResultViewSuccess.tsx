@@ -19,26 +19,52 @@ import { CompilationResult } from "../lib/types";
 interface ResultViewSuccessProps {
     result: CompilationResult;
 }
-export default function ResultViewSuccess({ result } : ResultViewSuccessProps) {
-  if (!result || !result.success) return null;
+export default function ResultViewSuccess({ result }: ResultViewSuccessProps) {
+  if (!result?.success) return null;
 
   return (
-    <div>
-      {result.classes.map((cls:any) => (
-        <div key={cls.className} style={{ marginBottom: "1rem" }}>
-          <h3>class {cls.className}</h3>
+    <div className="text-foreground">
+      <p className="text-green-400/60 text-3xl font-bold pb-5">
+        Successfully Compiled
+      </p>
+      {result.classes.map((cls: any) => (
+        <section
+          key={cls.className}
+          className="rounded-md"
+        >
+          {/* Title */}
+          <div className="text-xl">
+            <span className="text-muted">class </span>
+            <span className="text-accent font-semibold">{cls.className}</span>
+          </div>
 
-          <ul>
-            {Object.entries(cls.evaluatedVars).map(
-              ([varName, valueObj] : any) => (
-                <li key={varName}>
-                  <strong>{varName}</strong> = {String(valueObj.value)}{" "}
-                  <em>({valueObj.type})</em>
-                </li>
-              )
-            )}
-          </ul>
-        </div>
+          {/* Vars */}
+          {cls.evaluatedVars && Object.keys(cls.evaluatedVars).length > 0 ? (
+            <ul className="text-foreground mb-4">
+              {Object.entries(cls.evaluatedVars).map(
+                ([varName, valueObj]: any) => (
+                  <li key={varName}>
+                    <span className="text-foreground font-semibold">
+                      {varName}
+                    </span>
+                    <span className="text-muted">{" = "}</span>
+                    <span className="text-foreground">
+                      {String(valueObj?.value)}
+                    </span>
+                    <span className="text-muted">{" ("}</span>
+                    <span className="text-muted">{valueObj?.type}</span>
+                    <span className="text-muted">{")"}</span>
+                  </li>
+                )
+              )}
+            </ul>
+
+          ) : (
+            <div className="text-muted">
+              No evaluated variables.
+            </div>
+          )}
+        </section>
       ))}
     </div>
   );

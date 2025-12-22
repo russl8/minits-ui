@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import { CompilationResult } from '../lib/types';
 import { CodeContext } from './CodeContext';
+import { examples } from '../lib/examples';
 
 export const CodeContextProvider= ({ children } : {children: React.ReactNode}) => {
-  const [code, setCode] = useState<string>("class A { \n\ta : int = 4;\n}");
+  const [code, setCode] = useState<string>(examples.initialExample);
 
   return (
     <CodeContext.Provider value={{code, setCode}}>

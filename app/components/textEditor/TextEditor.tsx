@@ -7,7 +7,7 @@ const TextEditor = () => {
   const { code, setCode } = useCodeContext();
 
   return (
-    <div className="flex flex-col h-full w-full rounded-lg lg:w-[70%]">
+    <div className="flex flex-col h-full w-full rounded-lg">
       <div className="rounded-lg overflow-hidden border border-neutral-700 h-full m-2 p-4 bg-backgroundDark">
         <Editor
           beforeMount={(monaco) => {
