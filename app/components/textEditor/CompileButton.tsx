@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import { useCompilationResultContext } from "../context/CompilationResultContext";
 import { useCodeContext } from "../context/CodeContext";
+import { useLoadingContext } from "../context/LoadingContext";
 
 const CompileButton = () => {
   const { compilationResult, setCompilationResult } =
     useCompilationResultContext();
   const { code } = useCodeContext();
+  const {setIsLoading} = useLoadingContext();
 
   async function compile() {
+    setIsLoading(true)
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_MINITS_API_URL}/api/compile`,
       {
@@ -21,6 +24,7 @@ const CompileButton = () => {
     const data = await res.json();
     console.log("compile result:", data);
     setCompilationResult(data);
+    setIsLoading(false)
   }
 
   return (
