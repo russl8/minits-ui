@@ -55,8 +55,11 @@ const ExamplesView = () => {
               </td>
 
               <td className=" pr-4">
-                <pre className="text-xs text-foreground whitespace-pre-wrap break-words font-mon bg-backgroundLight p-2 rounded-lg">
+                <pre className="text-xs text-foreground whitespace-pre-wrap break-words font-mono  bg-backgroundLight p-2 rounded-lg h-30 w-full overflow-scroll">
+                  <div className="overflow-y-scroll">
                   {snippetPreview(ex.snippet)}
+
+                  </div>
                 </pre>
               </td>
             </tr>
