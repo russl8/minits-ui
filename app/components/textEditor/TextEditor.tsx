@@ -8,7 +8,7 @@ const TextEditor = () => {
 
   return (
     <div className="flex flex-col h-full w-full rounded-lg">
-      <div className="rounded-lg overflow-hidden border border-neutral-700 h-full m-2 p-4 bg-backgroundDark">
+      <div className="rounded-lg overflow-hidden lg:border lg:border-neutral-700 h-full m-2 p-4 bg-backgroundDark">
         <Editor
           beforeMount={(monaco) => {
             monaco.editor.defineTheme("minits-dark", {
