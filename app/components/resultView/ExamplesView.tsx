@@ -35,7 +35,7 @@ const ExamplesView = () => {
 
         <tbody>
           {rows.map((ex) => (
-            <tr key={ex.name}>
+            <tr key={ex.name} className="flex flex-col"> 
               <td className="py-3 pr-4">
                 <span className="text-accent text-base font-semibold flex flex-row items-center text-wrap">
                   {prettifyName(ex.name)}
@@ -54,7 +54,7 @@ const ExamplesView = () => {
                 </span>
               </td>
 
-              <td className="py-3 pr-4">
+              <td className=" pr-4">
                 <pre className="text-xs text-foreground whitespace-pre-wrap break-words font-mon bg-backgroundLight p-2 rounded-lg">
                   {snippetPreview(ex.snippet)}
                 </pre>
