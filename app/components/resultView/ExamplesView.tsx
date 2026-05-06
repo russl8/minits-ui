@@ -54,12 +54,9 @@ const ExamplesView = () => {
                 </span>
               </td>
 
-              <td className=" pr-4">
-                <pre className="text-xs text-foreground whitespace-pre-wrap break-words font-mono  bg-backgroundLight p-2 rounded-lg h-30 w-full overflow-scroll">
-                  <div className="overflow-y-scroll">
-                  {snippetPreview(ex.snippet)}
-
-                  </div>
+              <td className="pr-4">
+                <pre className="text-xs text-foreground whitespace-pre-wrap break-words font-mono bg-backgroundLight p-2 rounded-lg w-full">
+                  {ex.snippet}
                 </pre>
               </td>
             </tr>
@@ -82,9 +79,4 @@ function prettifyName(name: string) {
   return name.replaceAll("_", " ").replace(/([a-z])([A-Z])/g, "$1 $2");
 }
 
-function snippetPreview(snippet: string, maxLines = 8, maxChars = 260) {
-  const lines = snippet.split("\n");
-  const sliced = lines.slice(0, maxLines).join("\n");
-  return sliced.length > maxChars ? sliced.slice(0, maxChars) + "…" : sliced;
-}
 export default ExamplesView;

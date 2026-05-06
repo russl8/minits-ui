@@ -20,7 +20,7 @@ const ResultView = ({isSmall}:{isSmall:boolean}) => {
         <ResultTabButton setTab={setTab} currentTab={tab} tabName="Examples" />
       </div>
 
-      <div className="overflow-y-scroll text-foreground w-full h-screen">
+      <div className="overflow-y-scroll text-foreground w-full h-[calc(100%-2rem)]">
         {isSmall &&  tab === "Code" && <TextEditor />}
         {tab === "Output" && <OutputView />}
         {tab === "Examples" && <ExamplesView />}

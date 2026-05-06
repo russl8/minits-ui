@@ -3,6 +3,7 @@ export default function Footer() {
     <footer className="px-6 py-4">
       <div className="flex items-center justify-center">
         <span className="text-muted text-sm">
+          language + interpreter created by {" "}
           <a
             href="https://github.com/russl8"
             target="_blank"
