@@ -9,20 +9,21 @@ import CompileButton from "./components/textEditor/CompileButton";
 import { CodeContextProvider } from "./components/context/CodeContextProvider";
 import { useCodeContext } from "./components/context/codeContext";
 import { LoadingContextProvider } from "./components/context/LoadingContextProvider";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div>
+    <div className="h-screen flex flex-col">
       <CompilationResultProvider>
         <CodeContextProvider>
           <LoadingContextProvider>
-            <div className="max-h-screen w-screen flex flex-row">
+            <div className="flex-1 min-h-0 flex flex-row">
               {/* LEFT SIDE */}
               <div className="flex flex-col min-w-full max-h-full lg:min-w-[70%]">
                 {/* HEADER */}
                 <div className="m-2 mb-0 p-2 flex items-center">
                   <h1 className="text-white font-bold text-5xl font-sans flex items-center">
-                    Mini
+                    mini
                     <div className="bg-accent pl-3 pt-3 pb-1 pr-1 ml-1 rounded-md flex items-center">
                       <span className="text-3xl tracking-normal">TS</span>
                     </div>
@@ -36,7 +37,7 @@ export default function Home() {
 
                 {/* CONTENT AREA: important */}
                 <div className="flex-1 min-h-0">
-                  <div className="hidden lg:flex lg:h-full h-screen">
+                  <div className="hidden lg:flex lg:h-full h-full">
                     <TextEditor />
                   </div>
 
@@ -54,6 +55,7 @@ export default function Home() {
           </LoadingContextProvider>
         </CodeContextProvider>
       </CompilationResultProvider>
+      <Footer />
     </div>
   );
 }
