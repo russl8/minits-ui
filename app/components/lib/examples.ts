@@ -76,8 +76,8 @@ class Child extends inheritance {
       word : list[char] = "HI";
 
       function change() : list[char] {
-          a : list[char] = "";
-      a = word;
+        a : list[char] = "";
+        a = word;
           return a;
       }
 
