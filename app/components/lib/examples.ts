@@ -72,21 +72,18 @@ class Child extends inheritance {
   {
     name: "list_modification",
     snippet: `class listMod {
-    class listMod {
-      word : list[char] = "HI";
+    word : list[char] = "HI";
 
-      function change() : list[char] {
+    function change() : list[char] {
         a : list[char] = "";
         a = word;
-          return a;
-      }
+        return a;
+    }
 
-      updated : list[char] = change(); // updated == word == "HI"
+    updated : list[char] = change(); // updated == word == "HI"
 
     word = "BYE"; // updated should also equal "BYE" (pass by reference)
-}
-    
-`,
+}`,
   },
   {
     name: "if_statement",
