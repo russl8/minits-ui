@@ -12,9 +12,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description =
+  "A TypeScript-like language with its own interpreter, built from scratch in Java.";
+
 export const metadata: Metadata = {
-  title: "miniTS",
-  description: "A TypeScript-like interpreter written in Java",
+  // absolute URLs for the link-preview image; Vercel deployments infer this if unset
+  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
+    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+    : undefined,
+  title: "miniTS: a language & interpreter built from scratch",
+  description,
+  openGraph: {
+    title: "miniTS: a language & interpreter built from scratch",
+    description,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "miniTS: a language & interpreter built from scratch",
+    description,
+  },
 };
 
 export default function RootLayout({

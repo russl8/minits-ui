@@ -1,15 +1,18 @@
 "use client";
-import Image from "next/image";
-import { useState } from "react";
-import Editor from "@monaco-editor/react";
 import TextEditor from "./components/textEditor/TextEditor";
 import ResultView from "./components/resultView/ResultView";
 import { CompilationResultProvider } from "./components/context/CompilationResultProvider";
-import CompileButton from "./components/textEditor/CompileButton";
 import { CodeContextProvider } from "./components/context/CodeContextProvider";
-import { useCodeContext } from "./components/context/codeContext";
 import { LoadingContextProvider } from "./components/context/LoadingContextProvider";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import { useAutoDemo } from "./components/lib/useAutoDemo";
+
+// lives inside the providers so it can use their contexts
+const AutoDemo = () => {
+  useAutoDemo();
+  return null;
+};
 
 export default function Home() {
   return (
@@ -17,23 +20,11 @@ export default function Home() {
       <CompilationResultProvider>
         <CodeContextProvider>
           <LoadingContextProvider>
+            <AutoDemo />
             <div className="flex-1 min-h-0 flex flex-row">
               {/* LEFT SIDE */}
               <div className="flex flex-col min-w-full max-h-full lg:min-w-[70%]">
-                {/* HEADER */}
-                <div className="m-2 mb-0 p-2 flex items-center">
-                  <h1 className="text-white font-bold text-5xl font-sans flex items-center">
-                    mini
-                    <div className="bg-accent pl-3 pt-3 pb-1 pr-1 ml-1 rounded-md flex items-center">
-                      <span className="text-3xl tracking-normal">TS</span>
-                    </div>
-                  </h1>
-
-                  {/* pushes button to the right */}
-                  <div className="ml-auto">
-                    <CompileButton />
-                  </div>
-                </div>
+                <Header />
 
                 {/* CONTENT AREA: important */}
                 <div className="flex-1 min-h-0">

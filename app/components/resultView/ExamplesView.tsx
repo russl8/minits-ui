@@ -1,14 +1,26 @@
 import { useMemo, useState } from "react";
 import { Example, examples } from "../lib/examples";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, FileInput } from "lucide-react";
+import { useCodeContext } from "../context/codeContext";
 
-const ExamplesView = () => {
+const ExamplesView = ({ onLoad }: { onLoad?: () => void }) => {
+  const { setCode, demoRef } = useCodeContext();
   const [copiedName, setCopiedName] = useState<string | null>(null);
 
   const rows = useMemo(() => {
     // skip initialExample
     return examples.slice(1);
   }, []);
+
+  function loadSnippet(ex: Example) {
+    // stop the typing demo so it doesn't overwrite the loaded example
+    if (demoRef.current.active) {
+      demoRef.current.cancelled = true;
+      demoRef.current.replaced = true;
+    }
+    setCode(ex.snippet);
+    onLoad?.();
+  }
 
   async function copySnippet(ex: Example) {
     try {
@@ -50,6 +62,15 @@ const ExamplesView = () => {
                     ) : (
                       <Copy size={18} />
                     )}
+                  </button>
+                  <button
+                    onClick={() => loadSnippet(ex)}
+                    title="Replace the editor's code with this example"
+                    className="ml-1 flex items-center gap-1 rounded-md border border-neutral-700 px-1.5 py-0.5
+            text-xs font-semibold text-muted cursor-pointer hover:border-accent hover:text-accent transition-colors"
+                  >
+                    <FileInput size={13} />
+                    Load
                   </button>
                 </span>
               </td>

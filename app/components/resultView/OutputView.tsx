@@ -1,11 +1,12 @@
 import { useCompilationResultContext } from "../context/compilationResultContext";
 import { useLoadingContext } from "../context/loadingContext";
+import { Loader2 } from "lucide-react";
 import OutputViewFailure from "./OutputViewFailure";
 import OutputViewSuccess from "./OutputViewSuccess";
 
 const OutputView = () => {
   const { compilationResult } = useCompilationResultContext();
-  const { isLoading } = useLoadingContext();
+  const { isLoading, serverStatus } = useLoadingContext();
   return (
     <>
       {compilationResult == null && !isLoading && (
@@ -22,8 +23,18 @@ const OutputView = () => {
       )}
 
       {isLoading && (
-        <div className="h-full flex items-center justify-center text-neutral-500 text-base font-sans">
-          Loading...
+        <div className="h-full flex flex-col items-center justify-center gap-3 text-neutral-500 text-base font-sans text-center px-4">
+          <Loader2 size={28} className="animate-spin text-accent" />
+          {serverStatus === "waking" ? (
+            <>
+              <div>Waking up the interpreter…</div>
+              <div className="text-sm text-neutral-600">
+                It runs on a free-tier server, so the first run can take ~30s.
+              </div>
+            </>
+          ) : (
+            <div>Compiling…</div>
+          )}
         </div>
       )}
 

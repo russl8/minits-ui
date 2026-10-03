@@ -1,42 +1,43 @@
 import { useEffect } from "react";
-import { useCompilationResultContext } from "../context/compilationResultContext";
-import { useCodeContext } from "../context/codeContext";
+import { Loader2, Play } from "lucide-react";
 import { useLoadingContext } from "../context/loadingContext";
+import { useCompile } from "../lib/useCompile";
 
 const CompileButton = () => {
-  const { compilationResult, setCompilationResult } =
-    useCompilationResultContext();
-  const { code } = useCodeContext();
-  const {setIsLoading} = useLoadingContext();
+  const { isLoading } = useLoadingContext();
+  const compile = useCompile();
 
-  async function compile() {
-    setIsLoading(true)
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_MINITS_API_URL}/api/compile`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code }),
-      }
-    );
-
-    console.log(res);
-    const data = await res.json();
-    console.log("compile result:", data);
-    setCompilationResult(data);
-    setIsLoading(false)
-  }
+  // Ctrl/Cmd+Enter outside the editor (the editor registers its own command)
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (!(e.key === "Enter" && (e.metaKey || e.ctrlKey))) return;
+      if ((e.target as HTMLElement | null)?.closest(".monaco-editor")) return;
+      e.preventDefault();
+      if (!isLoading) compile();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [compile, isLoading]);
 
   return (
-    <>
-      <button
-        onClick={compile}
-        className="bg-backgroundDark py-2 px-4 text-lg text-white rounded-lg 
-        font-bold justify-self-end cursor-pointer hover:opacity-55 transition-opacity duration-200"
-      >
-        Compile
-      </button>
-    </>
+    <button
+      onClick={() => compile()}
+      disabled={isLoading}
+      title="Compile (Ctrl/⌘ + Enter)"
+      className="bg-accent text-backgroundDark py-1.5 px-3 text-base lg:py-2 lg:px-4 lg:text-lg rounded-lg font-bold
+        flex items-center gap-2 cursor-pointer hover:brightness-110
+        disabled:opacity-60 disabled:cursor-wait transition-all duration-200"
+    >
+      {isLoading ? (
+        <Loader2 size={18} className="animate-spin" />
+      ) : (
+        <Play size={18} className="fill-current" />
+      )}
+      Compile
+      <kbd className="hidden md:inline text-xs font-mono font-semibold opacity-60 ml-1">
+        ⌘↵
+      </kbd>
+    </button>
   );
 };
 

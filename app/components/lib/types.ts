@@ -23,6 +23,12 @@ export type ClassResult={
 
 export type CompilationResult = {
   success: boolean;
-  errors : Array<string>;
-  classes: Array<ClassResult>;
-} | null; 
+  errors? : Array<string>;
+  // semantic (type/scope) errors come back under a different key than syntax errors
+  semanticErrors?: Array<string>;
+  classes?: Array<ClassResult>;
+} | null;
+
+export function getErrors(result: CompilationResult): string[] {
+  return result?.errors ?? result?.semanticErrors ?? [];
+}

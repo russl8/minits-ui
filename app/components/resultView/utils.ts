@@ -8,6 +8,19 @@ export function parseCompilerError(raw: string): ParsedError {
   const m = raw.match(regex);
 
   if (!m) {
+    // semantic errors look like: Variable 'x' not declared, line=1 col=21
+    const sem = raw.match(/^(.*?),?\s*line=(\d+)\s*col=(\d+)\s*$/);
+    if (sem) {
+      return {
+        raw,
+        line: Number(sem[2]),
+        col: Number(sem[3]),
+        token: null,
+        message: sem[1].trim(),
+        ruleStack: null,
+      };
+    }
+
     // fallback: still show something useful
     return {
       raw,

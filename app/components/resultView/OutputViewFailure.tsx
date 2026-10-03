@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { CompilationResult } from "../lib/types";
+import { CompilationResult, getErrors } from "../lib/types";
 import { parseCompilerError } from "./utils";
 
 interface OutputViewFailureProps {
@@ -9,7 +9,7 @@ interface OutputViewFailureProps {
 export default function OutputViewFailure({ result }: OutputViewFailureProps) {
   if (!result || result.success) return null;
 
-  const errors: string[] = (result as any).errors ?? [];
+  const errors = getErrors(result);
 
   const parsed = useMemo(() => {
     const rows = errors.map(parseCompilerError);

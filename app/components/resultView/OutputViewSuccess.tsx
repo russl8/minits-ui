@@ -20,7 +20,7 @@ export default function OutputViewSuccess({ result }: OutputViewSuccessProps) {
         Successfully Compiled
       </p>
 
-      {result.classes.map((cls: any) => (
+      {(result.classes ?? []).map((cls: any) => (
         <section key={cls.className} className="rounded-md">
           {/* Title */}
           <div className="text-xl">
